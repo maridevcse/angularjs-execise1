@@ -1,0 +1,128 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <script src="./angularJs.min.js"></script>
+    <title>Exercises</title>
+</head>
+
+<body ng-app="app">
+
+    <div ng-controller="myController">
+
+    <h2>Exercises</h2>
+
+    <div class="container">
+
+        <h3>Evil Siri</h3>
+        <input type="text" placeholder="Enter Your Name" ng-model="name">
+        <h1>{{name}}</h1>
+
+    </div>
+
+    <div class="container">
+
+        <h3>Handy instant maths calculators</h3>
+        <input type="number" placeholder="Enter an evil number" ng-model="data.firstNumber">
+        <input type="number" placeholder="Add another Number" ng-model="data.secondNumber">
+        <input type="button" value="Add" ng-click="addMe()">
+
+
+        <div class="container">
+
+            <ul>
+                <li ng-repeat="el in addArr">
+                    <span>{{el.firstNumber}} + {{el.secondNumber}} = {{el.addedValue}}</span>
+                </li>
+            </ul>
+
+        </div>
+    </div>
+
+    <div class="container">
+
+            <h3>Time Remaining</h3>
+            <input type="text" placeholder="Enter your Age in Years" ng-model="age">
+
+            <h3>Your lived {{age ? age*52:''}} weeks in this Earth , approximately you have remaining {{age ?
+                3900-(age*52):''}} weeeks</h3>
+
+    </div>
+
+
+     <div class="container">
+
+
+   
+        <h3>Profile Widgets  </h3>
+        <span> <input type="checkbox" ng-model="ppchange"> Need Profile pic change ?</span>
+
+        <div ng-show="ppchange" class="profile_widget" style="display: flex;align-items: center;">
+        
+         
+            <input list="persons" name="person" id="person" ng-model="avatarUrl">
+            <datalist id="persons">
+                <option value="john" selected>
+                <option value="ben">
+                <option value="jay">
+                <option value="bob">
+
+            </datalist>
+            <img ng-show="avatarUrl.length>2"src={{"./images/"+avatarUrl+'.jpg'}} alt="Profile" style="height: 130px; margin-left: 30px;">
+
+        </div>
+
+    </div>
+
+
+</div>
+
+<div ng-controller="profileController">
+
+
+    <div class="container">
+
+        <h3>Persons</h3>
+      
+         <div class="persons_person" ng-repeat="el in personsArr">
+
+             <img src={{el.imageUrl}} style="height: 200px; width: 300px;"></img> 
+             <p>Name : {{el.name +" "+ el.lname}}</p>
+             <p>Age : {{el.age}}</p>
+             <p>Desigination : {{el.description}}</p>
+
+
+         </div>
+
+    </div>
+
+    <div class="container">
+
+        <h3>Storing a data in a controller</h3>
+       <form ng-submit="addPerson()">
+ 
+       <div style="display: flex;">
+
+        <input type="text" ng-model="person.name" placeholder="First Name" required> &nbsp;   
+         <span style="color: red;" ng-show="error">{{error.name}}</span>
+       
+        </div> 
+
+        <input type="text" ng-model="person.lname" placeholder="Last Name" required>
+        <input type="text" ng-model="person.age" placeholder="Your Age" required>
+        <input type="text" ng-model="person.description" placeholder="Desigination" required>
+        <input type="submit" value="Store" >
+        
+    </form>
+
+    </div>
+
+</div>
+
+</body>
+
+</html>
+<script src="./script.js"></script>
